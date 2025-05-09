@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="Branches">
+        <div class="slds-p-around_medium">
+            <template for:each={branches} for:item="bcs">
+                <div key={bcs.Id} class="slds-p-around-medium">
+                   <!-- <a href="javascript:void(0)" data-id={bcs.Id} onclick={handleBranchClick}>
+                        {bcs.Name}
+                    </a> -->
+                    <lightning-button variant="base" label={bcs.Name} 
+                        class="slds-text-link" data-id={bcs.Id}
+                        onclick={handleBranchClick}>
+                    </lightning-button>
+                </div>
+            </template>
+        </div>
+        <template if:true={branchPopup}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Branch Details</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p><strong>Name:</strong> {selectedBranch.Name}</p>
+                        <p><strong>Location:</strong> {selectedBranch.Location__c}</p>
+                        <p><strong>Number of Employees:</strong> {selectedBranch.Number_of_Employees__c}</p>
+                    </div>
+                    <footer class="slds-modal__footer slds-grid slds-grid_align-end">
+                        
+                        <div class="slds-m-right_small">
+                            <lightning-button variant="brand" label="Employee Details" onclick={handleEmployeeDetails}></lightning-button>
+                        </div>
+                        <div>
+                            <lightning-button label="Close" onclick={closeBranchPopup}></lightning-button>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <template if:true={pop}>
+            <c-employee-list 
+                branch-id={branchId}
+                record-id={recordId}
+                onclose={employeeClose}>
+            </c-employee-list>
+        </template>
+        
+    </lightning-card>
+</template>
