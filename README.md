@@ -1,1 +1,1 @@
-Created custom objects: Organization, Branch, and Employee with master-detail relationships. Built LWC to display branches and employees dynamically with modals and editable details. Enabled employee transfer between branches and real-time data updates. Implemented SOQL queries and CRUD operations using lightning/uiRecordApi.
+A LWC Component that can manage the Branches and Employees of an Organization.
